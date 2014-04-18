@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebGL - 1</title>
+
+    <style type="text/css">
+
+      *{
+        margin: 0;
+        padding: 0;
+        vertical-align: top;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <script type="x-shader/x-vertex" id="vertex-shader">
+
+      attribute vec3 position;
+
+      void main(){
+        gl_Position = vec4(position, 1);
+      }
+
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragment-shader">
+
+      void main(){
+        gl_FragColor = vec4(0,0,0,1);
+      }
+
+    </script>
+    
+    <canvas></canvas>
+
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+  </body>
+
+</html>
