@@ -27,6 +27,8 @@ var vertexRotationZ = gl.getUniformLocation(shaderProgram, "rotationZ");
 
 var vertexResolution = gl.getUniformLocation(shaderProgram, "resolution");
 
+var vertexScale = gl.getUniformLocation(shaderProgram, "scale");
+
 gl.useProgram(shaderProgram);
 
 var squareBuffer = gl.createBuffer();
@@ -61,7 +63,9 @@ var transformations = {
 	translateX: 0,
 	translateY: 0,
 	translateZ: 0,
-	rotateZ: 30
+	rotateZ: 30,
+	scaleX: 1,
+	scaleY: 1
 }
 
 function animate(){
@@ -71,6 +75,8 @@ function animate(){
 	gl.uniformMatrix4fv(vertexTranslation, false, translationMatrix(transformations.translateX,transformations.translateY,0));
 
 	gl.uniformMatrix4fv(vertexRotationZ, false, rotationMatrixZ(transformations.rotateZ));
+
+	gl.uniformMatrix4fv(vertexScale, false, scaleMatrix(transformations.scaleX, transformations.scaleY));
 
 	gl.drawArrays(gl.TRIANGLES, 0, 12);
 

@@ -26,13 +26,15 @@
 
       uniform mat4 translation;
 
+      uniform mat4 scale;
+
       uniform mat4 rotationZ;
 
       uniform vec4 resolution;
 
       void main(){
 
-        vec4 new_position = translation*rotationZ*vec4(position,0.5);
+        vec4 new_position = scale*translation*rotationZ*vec4(position,0.5);
 
         gl_Position = new_position*2.0/resolution;
       }
