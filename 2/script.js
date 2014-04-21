@@ -21,6 +21,9 @@ if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
 var vertexPosition = gl.getAttribLocation(shaderProgram, "position");
 gl.enableVertexAttribArray(vertexPosition);
 
+var vertexColor = gl.getAttribLocation(shaderProgram, "color");
+gl.enableVertexAttribArray(vertexColor);
+
 var vertexTranslation = gl.getUniformLocation(shaderProgram, "translation");
 
 var vertexRotationZ = gl.getUniformLocation(shaderProgram, "rotationZ");
@@ -36,24 +39,32 @@ gl.bindBuffer(gl.ARRAY_BUFFER, squareBuffer);
 gl.bufferData(
 	gl.ARRAY_BUFFER, 
 	new Float32Array([
-		-21, 82, 0,
-	    -21, -82, 0,
-	    21,-82, 0,
-	    21,-82, 0,
-	    -21, 82, 0,
-	    21,82, 0,
-	    -82, 82, 0,
-	    83, 46, 0,
-	    82, 82, 0,
-	    -82, 82, 0,
-	    83, 46, 0,
-	    -82, 46, 0
+		// Vertical
+		// Left
+		-21,  46, 0, 123,123,123,1,
+	    -21, -82, 0, 90,90,90,1,
+	     21, -82, 0, 30,30,30,1,
+	     // Right
+	     21, -82, 0, 30,30,30,1,
+	    -21,  46, 0, 123,123,123,1,
+	     21,  46, 0, 90,90,90,1,
+
+	     // Horizontal
+	     // Upper
+	    -82,  82, 0, 200,200,200,1,
+	     83,  46, 0, 100,100,100,1,
+	     82,  82, 0, 70,70,70,1,
+	     // Bottom
+	    -82,  82, 0, 200,200,200,1,
+	     83,  46, 0, 100,100,100,1,
+	    -82,  46, 0, 70,70,70,1
 	]),
 	gl.STATIC_DRAW
 );
 
 
-gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
+gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 28, 0);
+gl.vertexAttribPointer(vertexColor, 4, gl.FLOAT, false, 28, 12);
 
 gl.uniform4f(vertexResolution, canvas.width, canvas.height, 1, 1);
 
@@ -63,7 +74,7 @@ var transformations = {
 	translateX: 0,
 	translateY: 0,
 	translateZ: 0,
-	rotateZ: 30,
+	rotateZ: 0,
 	scaleX: 1,
 	scaleY: 1
 }
